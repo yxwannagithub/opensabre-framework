@@ -74,12 +74,13 @@ public class DesensitizationSerialize extends JsonSerializer<String> implements 
             // 不为null
             if (desensitization != null) {
                 // 创建定义的序列化类的实例并且返回，入参为注解定义的type,开始位置，结束位置。
-                if (desensitization.type().equals(DefaultSensitiveRule.CUSTOM))
+                if (desensitization.type().equals(DefaultSensitiveRule.CUSTOM)){
                     return new DesensitizationSerialize(desensitization.retainPrefixCount(),
                             desensitization.retainSuffixCount(),
                             desensitization.replaceChar());
-                else
+                } else {
                     return new DesensitizationSerialize(desensitization.type());
+                }
             }
         }
         return serializerProvider.findValueSerializer(beanProperty.getType(), beanProperty);
